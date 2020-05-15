@@ -1,0 +1,20 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "relish"
+  description: "relish api"
+host: "localhost:1111"
+basePath: "/"
+schemes:
+  - "http"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+paths:
+  /health:
+    get:
+      operationId: checkHealth
+      responses:
+        '200':
+          description: OK
