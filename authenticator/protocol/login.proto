@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package protocol;
+
+// sample service.
+service LoginController {
+  // sample method.
+  rpc Login (LoginRequest) returns (LoginResponse) {}
+}
+
+// sample message(request).
+message LoginRequest {
+  string id = 1;
+  string password = 2;
+}
+
+// sample message(request).
+message LoginResponse {
+  bool isOK = 1;
+  string errorMessage = 2;
+}

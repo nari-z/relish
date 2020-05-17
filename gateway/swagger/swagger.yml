@@ -18,3 +18,9 @@ paths:
       responses:
         '200':
           description: OK
+  /login:
+    get:
+      operationId: loginUser
+      responses:
+        '200':
+          description: OK
