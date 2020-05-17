@@ -1,6 +1,8 @@
 .DS_Store
 .envrc
 
+*.code-workspace
+
 gateway/generate/*
 !gateway/generate/restapi/
 gateway/generate/restapi/*
