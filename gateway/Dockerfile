@@ -1,7 +1,7 @@
 FROM alpine:3.12.0
 
-COPY ./main .
-RUN chmod u+x main
+COPY ./gateway .
+RUN chmod u+x gateway
 
 EXPOSE 1111
-CMD ["./main"]
+CMD ["./gateway"]
