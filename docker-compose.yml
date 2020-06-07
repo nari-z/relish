@@ -1,0 +1,18 @@
+version: '3'
+services:
+
+  gateway:
+    image: gateway
+    container_name: gateway
+    restart: always
+    ports:
+      - 1111:1111
+    environment:
+        AUTHENTICATOR_HOST: "authenticator:9999"
+
+  authenticator:
+    image: authenticator
+    container_name: authenticator
+    restart: always
+    ports:
+      - 9999:9999

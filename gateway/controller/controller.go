@@ -2,6 +2,8 @@ package controller
 
 import (
 	"github.com/nari-z/relish/gateway/generate/restapi/operations"
+
+	"github.com/nari-z/relish/gateway/repository"
 )
 
 // Controller bundler controller
@@ -18,7 +20,7 @@ type controller struct {
 func NewController() Controller {
 	return &controller{
 		healthController: NewHealthContoller(),
-		loginController:  NewLoginContoller(),
+		loginController:  NewLoginContoller(repository.NewUserRepository()),
 	}
 }
 

@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"github.com/go-openapi/runtime/middleware"
 	"github.com/nari-z/relish/gateway/generate/restapi/operations"
 )
@@ -19,5 +20,6 @@ func NewHealthContoller() HealthController {
 }
 
 func (h healthController) CheckHealth(params operations.CheckHealthParams) middleware.Responder {
+	fmt.Println("call CheckHealth")
 	return operations.NewCheckHealthOK()
 }

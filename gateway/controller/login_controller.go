@@ -1,13 +1,13 @@
 package controller
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/go-openapi/runtime/middleware"
 	"github.com/nari-z/relish/gateway/generate/restapi/operations"
-	"google.golang.org/grpc"
 
-	"github.com/nari-z/relish/authenticator/protocol"
+	"github.com/nari-z/relish/gateway/domain"
 )
 
 // LoginController swagger endpoint
@@ -16,31 +16,23 @@ type LoginController interface {
 }
 
 type loginController struct {
+	userRepository domain.UserRepository
 }
 
 // NewLoginContoller create LoginController
-func NewLoginContoller() LoginController {
-	return &loginController{}
+func NewLoginContoller(userRepository domain.UserRepository) LoginController {
+	return &loginController{userRepository}
 }
 
-func (h loginController) LoginUser(params operations.LoginUserParams) middleware.Responder {
-	conn, err := grpc.Dial("127.0.0.1:9999", grpc.WithInsecure())
-	if err != nil {
-		log.Fatal("client connection error:", err)
-	}
-	defer conn.Close()
-	client := protocol.NewLoginControllerClient(conn)
-	res, err := client.Login(
-		params.HTTPRequest.Context(),
-		&protocol.LoginRequest{
-			Id:       "user id",
-			Password: "user password",
-		},
-	)
+func (c loginController) LoginUser(params operations.LoginUserParams) middleware.Responder {
+	fmt.Println("call CheckHealth")
+
+	isOK, err := c.userRepository.Login("user id", "user password", params.HTTPRequest.Context())
+
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	if res.IsOK {
+	if isOK {
 		log.Println("login is OK")
 	}
 	return operations.NewLoginUserOK()
