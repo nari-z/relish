@@ -8,6 +8,8 @@ BINARY_DIR=.
 BINARY_AMD64_LINUX=./$(BINARY_NAME)
 
 all: test build
+generate:
+	swagger generate server -f ./swagger/swagger.yml -t generate
 build:
 	$(GOBUILD) -o $(BINARY_NAME) -v
 test:

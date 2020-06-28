@@ -3,7 +3,3 @@
 
 *.code-workspace
 
-gateway/generate/*
-!gateway/generate/restapi/
-gateway/generate/restapi/*
-!gateway/generate/restapi/configure_drunk.go

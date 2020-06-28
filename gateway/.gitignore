@@ -1,0 +1,7 @@
+gateway
+
+# DO NOT EDIT
+generate/*
+!generate/restapi/
+generate/restapi/*
+!generate/restapi/configure_drunk.go
